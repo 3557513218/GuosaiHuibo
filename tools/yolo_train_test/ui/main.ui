@@ -1,0 +1,529 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1300</width>
+    <height>780</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1300</width>
+    <height>780</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1300</width>
+    <height>780</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>汇博机器人AI训练平台</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QLabel,  QLineEdit {
+    font-size: 15px; /* 根据需要调整字体大小 */
+    font-weight: bold;
+    color: #00BFFF  /* 使用浅蓝色 */
+}
+QMainWindow{
+background-color: #2c3e50
+}
+QPushButton {
+    font-family: 'Roboto';
+    font-size: 16px;
+    font-weight: bold;
+    color: #00BFFF; /* 浅蓝色字体 */
+    background-color: #1E1E1E; /* 深色背景 */
+    border: 2px solid #00BFFF; /* 浅蓝色边框 */
+    border-radius: 10px; /* 圆角 */
+    padding: 8px 16px; /* 内边距，增大点击区域 */
+}
+
+/* 鼠标悬停效果 */
+QPushButton:hover {
+    background-color: #00BFFF; /* 悬停时背景变为浅蓝色 */
+    color: #1E1E1E; /* 悬停时字体颜色变为深色 */
+}
+
+/* 按下效果 */
+QPushButton:pressed {
+    background-color: #0080FF; /* 按下时背景变为深蓝色 */
+    border: 2px solid #0080FF; /* 按下时边框变为深蓝色 */
+}</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="showimg_label">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>510</y>
+      <width>381</width>
+      <height>171</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 2px solid #95a5a6;  /* 边框宽度和颜色 */
+border-radius: 5px;     /* 边框圆角 */</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="srcImg_label">
+    <property name="geometry">
+     <rect>
+      <x>830</x>
+      <y>110</y>
+      <width>391</width>
+      <height>211</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 2px solid #95a5a6;  /* 边框宽度和颜色 */
+border-radius: 5px;     /* 边框圆角 */</string>
+    </property>
+    <property name="text">
+     <string>原始图像</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="result_label">
+    <property name="geometry">
+     <rect>
+      <x>810</x>
+      <y>580</y>
+      <width>431</width>
+      <height>111</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>预测结果</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="preImg_label">
+    <property name="geometry">
+     <rect>
+      <x>830</x>
+      <y>360</y>
+      <width>391</width>
+      <height>211</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 2px solid #95a5a6;  /* 边框宽度和颜色 */
+border-radius: 5px;     /* 边框圆角 */</string>
+    </property>
+    <property name="text">
+     <string>预测图像</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="clsShow_text">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>140</y>
+      <width>301</width>
+      <height>291</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="importData_btn">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>70</y>
+      <width>141</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>数据导入</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="importCls_btn">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>70</y>
+      <width>141</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>类别文件导入</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="saveModel_btn">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>70</y>
+      <width>141</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>保存模型</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="startTest_btn">
+    <property name="geometry">
+     <rect>
+      <x>1050</x>
+      <y>60</y>
+      <width>141</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>开始测试</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="testImgImport_btn">
+    <property name="geometry">
+     <rect>
+      <x>860</x>
+      <y>60</y>
+      <width>141</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>导入测试图片</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="showlog_text">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>130</y>
+      <width>381</width>
+      <height>341</height>
+     </rect>
+    </property>
+    <property name="html">
+     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: &quot;\2610&quot;; }
+li.checked::marker { content: &quot;\2612&quot;; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Microsoft YaHei UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="startTrain_btn">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>480</y>
+      <width>141</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>开始训练</string>
+    </property>
+   </widget>
+   <widget class="QListView" name="listView">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>50</y>
+      <width>321</width>
+      <height>411</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #34495e</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="dataImport_label">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>20</y>
+      <width>91</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>数据库导入</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="parameterSettings_label_2">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>650</y>
+      <width>311</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-size: 12px; /* 根据需要调整字体大小 */
+
+</string>
+    </property>
+    <property name="text">
+     <string>推荐学习率: 0.01   训练轮次: 50  批次大小∈[4,16] </string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="dataImport_label_2">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>20</y>
+      <width>91</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>训练日志</string>
+    </property>
+   </widget>
+   <widget class="QListView" name="listView_3">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>50</y>
+      <width>441</width>
+      <height>661</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #34495e</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="dataImport_label_3">
+    <property name="geometry">
+     <rect>
+      <x>800</x>
+      <y>20</y>
+      <width>91</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>模型预测</string>
+    </property>
+   </widget>
+   <widget class="QListView" name="listView_4">
+    <property name="geometry">
+     <rect>
+      <x>800</x>
+      <y>50</y>
+      <width>451</width>
+      <height>661</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #34495e</string>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="groupBox">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>530</y>
+      <width>321</width>
+      <height>181</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-size: 13px; /* 根据需要调整字体大小 */
+border: none;</string>
+    </property>
+    <property name="title">
+     <string/>
+    </property>
+    <widget class="QLabel" name="epoch_label">
+     <property name="geometry">
+      <rect>
+       <x>170</x>
+       <y>20</y>
+       <width>80</width>
+       <height>18</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>训练轮次：</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="epoch_text">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>20</y>
+       <width>71</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lr_text">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>20</y>
+       <width>71</width>
+       <height>24</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="bs_label">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>70</y>
+       <width>80</width>
+       <height>18</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>批次大小：</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="prjName_label">
+     <property name="geometry">
+      <rect>
+       <x>170</x>
+       <y>70</y>
+       <width>80</width>
+       <height>18</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>项目名称：</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="prjName_text">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>70</y>
+       <width>71</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lr_label">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>24</y>
+       <width>64</width>
+       <height>18</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>学习率：</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="bs_text">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>70</y>
+       <width>71</width>
+       <height>24</height>
+      </rect>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QLabel" name="parameterSettings_label">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>490</y>
+      <width>91</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>参数设置</string>
+    </property>
+   </widget>
+   <widget class="QListView" name="listView_2">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>530</y>
+      <width>321</width>
+      <height>181</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #34495e</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="importModel_btn">
+    <property name="geometry">
+     <rect>
+      <x>590</x>
+      <y>70</y>
+      <width>131</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>导入模型</string>
+    </property>
+   </widget>
+   <zorder>listView_4</zorder>
+   <zorder>listView_3</zorder>
+   <zorder>listView</zorder>
+   <zorder>showimg_label</zorder>
+   <zorder>srcImg_label</zorder>
+   <zorder>result_label</zorder>
+   <zorder>preImg_label</zorder>
+   <zorder>clsShow_text</zorder>
+   <zorder>importData_btn</zorder>
+   <zorder>importCls_btn</zorder>
+   <zorder>saveModel_btn</zorder>
+   <zorder>startTest_btn</zorder>
+   <zorder>testImgImport_btn</zorder>
+   <zorder>showlog_text</zorder>
+   <zorder>startTrain_btn</zorder>
+   <zorder>dataImport_label</zorder>
+   <zorder>dataImport_label_2</zorder>
+   <zorder>dataImport_label_3</zorder>
+   <zorder>parameterSettings_label</zorder>
+   <zorder>listView_2</zorder>
+   <zorder>groupBox</zorder>
+   <zorder>parameterSettings_label_2</zorder>
+   <zorder>importModel_btn</zorder>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
